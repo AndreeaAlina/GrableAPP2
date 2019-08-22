@@ -13,12 +13,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity {
         Button logoutbtn;
         Button shop;
+        Button list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         logoutbtn=(Button)findViewById(R.id.button);
         shop=(Button)findViewById(R.id.shop_btn);
+        list = (Button) findViewById(R.id.list_btn);
         logoutbtn.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -91,6 +93,14 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 builder.show();
+            }
+        });
+
+        list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                startActivity(intent);
             }
         });
     }

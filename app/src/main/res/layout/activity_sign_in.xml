@@ -21,6 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
+            android:src="@drawable/delfinuu"
              />
 
         <TextView
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imagelogo"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
             android:text="Welcome Back!"
             android:textColor="#FFFF"
             android:textSize="18dp"

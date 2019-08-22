@@ -25,4 +25,13 @@
         android:layout_marginLeft="100dp"
         android:text="Shop Now"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_btn"
+        android:layout_below="@+id/shop_btn"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:text="Open List"/>
+
 </RelativeLayout>
