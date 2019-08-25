@@ -11,27 +11,28 @@ import android.widget.Button;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
-        Button logoutbtn;
+
         Button shop;
         Button list;
+        Button settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        logoutbtn=(Button)findViewById(R.id.button);
         shop=(Button)findViewById(R.id.shop_btn);
         list = (Button) findViewById(R.id.list_btn);
-        logoutbtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(MainActivity.this, SignInActivity.class));
+        settings = (Button) findViewById(R.id.settingsButton);
 
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
+
+
 
         shop.setOnClickListener(new View.OnClickListener() {
             @Override
