@@ -18,16 +18,18 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ScannerActivity"></activity>
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".SignInActivity">
+        <activity android:name=".SignInActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".MainloginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ListActivity"></activity>
-        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>
