@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         Button shop;
         Button list;
         Button settings;
+        Button offers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,12 +23,21 @@ public class MainActivity extends AppCompatActivity {
         shop=(Button)findViewById(R.id.shop_btn);
         list = (Button) findViewById(R.id.list_btn);
         settings = (Button) findViewById(R.id.settingsButton);
+        offers = (Button) findViewById(R.id.oferrsbutton);
 
 
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        offers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, OffersActivity.class);
                 startActivity(intent);
             }
         });
