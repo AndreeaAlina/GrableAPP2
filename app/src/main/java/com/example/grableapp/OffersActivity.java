@@ -5,40 +5,38 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 public class OffersActivity extends AppCompatActivity {
 
-    ArrayList<String> offersList = new ArrayList<>();
+    ArrayList<String> arrayList = new ArrayList<>();
 
-    public void addItemToOffers(String item) {
-        offersList.add(item);
-    }
+
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offers);
+        setContentView(R.layout.activity_offers2);
 
-        ListView offersListView = findViewById(R.id.offersList);
+        ListView listView = findViewById(R.id.offersList);
 
-        ArrayList<String> offersList = new ArrayList<>();
-        addItemToOffers("Apa Dorna");
-        addItemToOffers("Bere Timisoreana");
-        addItemToOffers("Rosii Cherry");
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, offersList);
-        offersListView.setAdapter(arrayAdapter);
+        arrayList.add("Supa la pli999c");
+        arrayList.add("Coca-C99ola");
+        arrayList.add("Apa p99lata");
+
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
+        listView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
 
 
 
+
     }
-
-
 
 }
