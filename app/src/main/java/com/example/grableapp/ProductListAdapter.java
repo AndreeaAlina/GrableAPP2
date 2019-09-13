@@ -42,7 +42,7 @@ public class ProductListAdapter extends BaseAdapter {
         TextView tvDescription = (TextView)v.findViewById(R.id.tv_description);
 
         tvName.setText(mProductList.get(i).getName());
-        tvPrice.setText(mProductList.get(i).getPrice() + " $");
+        tvPrice.setText(mProductList.get(i).getPrice() + " RON");
         tvDescription.setText(mProductList.get(i).getDescription());
 
         v.setTag(mProductList.get(i).getId() );

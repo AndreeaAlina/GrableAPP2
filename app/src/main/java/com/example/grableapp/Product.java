@@ -3,10 +3,10 @@ package com.example.grableapp;
 public class Product {
     private int id;
     private String name;
-    private int price;
+    private double price;
     private String description;
 
-    public Product(int id, String name, int price, String description) {
+    public Product(int id, String name, double price, String description) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -37,7 +37,7 @@ public class Product {
         return name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
