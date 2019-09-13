@@ -31,6 +31,21 @@ public class ListActivity extends AppCompatActivity  {
     private List<Product> mProductList;
 
 
+    public void addItemToList(String name, double price, String description)
+    {
+//        if (mProductList.isEmpty()) {
+//            mProductList.add(new Product(1, name, price, description));
+//        }
+//        else{
+//            int id = mProductList.get(mProductList.size()).getId();
+//            mProductList.add(new Product(id+1, name, price, description));
+//        }
+        //nu merge varianta de mai sus
+        //trebuie adaugat id-ul ultimului element din lista + 1
+
+        mProductList.add(new Product(1, name, price, description));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +56,8 @@ public class ListActivity extends AppCompatActivity  {
         lvProduct = (ListView)findViewById(R.id.listview_produsct);
 
         mProductList = new ArrayList<>();
+
+
         //Add items to list
         //Se poate din database
 
@@ -54,6 +71,7 @@ public class ListActivity extends AppCompatActivity  {
         mProductList.add(new Product(8, "iPhone8", 2500, "Apple iPhone8 16GB"));
         mProductList.add(new Product(9, "iPhoneX", 4000, "Apple iPhoneX 16GB"));
         mProductList.add(new Product(10, "iPhone11", 6000, "Apple iPhone11 16GB"));
+        addItemToList("Carne", 20.5, "Pui");
 
 
         ///more to add
