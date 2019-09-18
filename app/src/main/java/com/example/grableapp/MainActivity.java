@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         build.setPositiveButton("SCANEAZA", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent myIntent = new Intent(MainActivity.this, ScannerActivity.class);
+                                Intent myIntent = new Intent(MainActivity.this, ListActivity.class);
 
                                 int cart = 1;
                                 myIntent.putExtra("cos", cart);
