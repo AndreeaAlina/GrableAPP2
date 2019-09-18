@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SettingsActivity extends AppCompatActivity {
 
     Button logout_btn;
+    Button add_card_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         logout_btn = findViewById(R.id.logOutButton);
+        add_card_btn = findViewById(R.id.addCardButton);
 
         logout_btn.setOnClickListener(new View.OnClickListener()
         {
@@ -36,6 +38,16 @@ public class SettingsActivity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(SettingsActivity.this, SignInActivity.class));
 
+            }
+        });
+
+        add_card_btn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(SettingsActivity.this, AddCardActivity.class);
+                startActivity(intent);
             }
         });
 
