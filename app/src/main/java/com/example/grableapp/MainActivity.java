@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -14,15 +15,14 @@ public class MainActivity extends AppCompatActivity {
 
         Button shop;
         Button list;
-        Button settings;
+        ImageView settings;
         Button offers;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         shop=(Button)findViewById(R.id.shop_btn);
-        list = (Button) findViewById(R.id.list_btn);
-        settings = (Button) findViewById(R.id.settingsButton);
+        settings = (ImageView) findViewById(R.id.settingsdots);
         offers = (Button) findViewById(R.id.oferrsbutton);
 
 
@@ -56,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
                         AlertDialog.Builder build2 = new AlertDialog.Builder(MainActivity.this);
                         build2.setCancelable(true);
                         build2.setTitle("Puteti incepe sa scanati produsele");
-                        build2.setPositiveButton("SCANEAZA", new DialogInterface.OnClickListener() {
+                        build2.setPositiveButton("INCEPE CUMPARATURILE", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent myIntent = new Intent(MainActivity.this, ScannerActivity.class);
+                                Intent myIntent = new Intent(MainActivity.this, ListActivity.class);
 
                                 int cart = 0;
                                 myIntent.putExtra("cos", cart);
@@ -104,14 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 builder.show();
-            }
-        });
-
-        list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                startActivity(intent);
             }
         });
     }

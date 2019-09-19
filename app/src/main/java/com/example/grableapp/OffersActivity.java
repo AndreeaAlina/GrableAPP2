@@ -10,33 +10,38 @@ import android.widget.ListView;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OffersActivity extends AppCompatActivity {
 
     ArrayList<String> arrayList = new ArrayList<>();
 
 
-    ArrayAdapter<String> arrayAdapter;
+    //ArrayAdapter<String> arrayAdapter;
+    private ListView lvProduct;
+    private ProductListAdapter adapter;
+    private List<Product> mProductList;
+
+
+    public void addItemToList(String name, double price, String description)
+    {
+        mProductList.add(new Product(1, name, price, description));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers2);
 
-        ListView listView = findViewById(R.id.offersList);
+        lvProduct = (ListView)findViewById(R.id.offersList);
 
+        mProductList = new ArrayList<>();
 
-        arrayList.add("Supa la pli999c");
-        arrayList.add("Coca-C99ola");
-        arrayList.add("Apa p99lata");
+        addItemToList("Apa plata Dorna", 1.99, "Old price: 2.99 RON");
+        addItemToList("Redbull", 3.99, "Old price 4.99 RON");
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
-        listView.setAdapter(arrayAdapter);
-        arrayAdapter.notifyDataSetChanged();
-
-
-
-
+        adapter = new ProductListAdapter(getApplicationContext(), mProductList);
+        lvProduct.setAdapter(adapter);
     }
 
 }
