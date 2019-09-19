@@ -25,10 +25,12 @@ public class ListActivity extends AppCompatActivity  {
     Map<String, String> shoppingList = new HashMap<String, String>();
 
     Button add_btn;
+    Button finish_btn;
 
     private ListView lvProduct;
     private ProductListAdapter adapter;
     private List<Product> mProductList;
+    private double total = 0.0;
 
 
     public void addItemToList(String name, double price, String description)
@@ -52,6 +54,7 @@ public class ListActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_list);
 
         add_btn = findViewById(R.id.list_btn);
+        finish_btn = findViewById(R.id.finish_shopping);
 
         lvProduct = (ListView)findViewById(R.id.listview_produsct);
 
@@ -99,6 +102,18 @@ public class ListActivity extends AppCompatActivity  {
             }
         });
 
+        finish_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (Product item : mProductList) {
+                    total += item.getPrice();
+                }
+                String totall = total + "";
+                Intent intent = new Intent(ListActivity.this, QRActivity.class);
+                intent.putExtra("key", totall);
+                startActivity(intent);
+            }
+        });
 
     }
 

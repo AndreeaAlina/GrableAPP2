@@ -31,6 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".OffersActivity"></activity>
+        <activity android:name=".QRActivity"></activity>
+        <activity android:name=".AddCardActivity"></activity>
     </application>
 
 </manifest>
