@@ -7,14 +7,20 @@
     tools:context=".MainActivity">
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logodpit"
+        android:alpha="0.3"/>
+
+
     <Button
         android:id="@+id/shop_btn"
         android:layout_width="250dp"
         android:layout_height="60dp"
-
         android:layout_marginStart="254dp"
         android:layout_marginLeft="254dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="350dp"
         android:layout_marginEnd="58dp"
         android:layout_marginRight="58dp"
         android:layout_marginBottom="383dp"
@@ -23,26 +29,23 @@
 
     <Button
         android:id="@+id/list_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="58dp"
-
-
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="294dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginRight="184dp"
-        android:layout_marginBottom="379dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="578dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
         android:background="@drawable/startshoppingbutton"
         android:text="Start Shopping!"
+        android:textAllCaps="false"
         android:textColor="#FFF"
         android:textSize="17dp" />
 
     <Button
         android:id="@+id/settingsButton"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginStart="277dp"
         android:layout_marginLeft="277dp"
         android:layout_marginTop="51dp"
@@ -57,17 +60,15 @@
     <Button
         android:id="@+id/oferrsbutton"
         android:layout_width="165dp"
-        android:layout_height="49dp"
-
-
-        android:layout_marginStart="118dp"
-        android:layout_marginLeft="118dp"
-        android:layout_marginTop="363dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
-        android:layout_marginBottom="318dp"
-        android:background="@drawable/loginbuttonpurple"
+        android:layout_height="50dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="642dp"
+        android:layout_marginEnd="121dp"
+        android:layout_marginRight="121dp"
+        android:background="@drawable/offers_button"
         android:text="Offers"
-        android:textColor="#FFF" />
+        android:textColor="#B82CE9"
+        android:textAllCaps="false"/>
 
 </RelativeLayout>
