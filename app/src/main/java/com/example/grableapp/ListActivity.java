@@ -1,6 +1,8 @@
 package com.example.grableapp;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -103,18 +105,58 @@ public class ListActivity extends AppCompatActivity  {
         });
 
         finish_btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                for (Product item : mProductList) {
-                    total += item.getPrice();
-                }
-                String totall = total + "";
-                Intent intent = new Intent(ListActivity.this, QRActivity.class);
-                intent.putExtra("key", totall);
-                startActivity(intent);
+                //Toast.makeText(ListActivity.this, "Mai mult cod", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("Confirm finish shopping?");
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        AlertDialog.Builder build2 = new AlertDialog.Builder(ListActivity.this);
+                        build2.setTitle("Choose payment method");
+                        build2.setPositiveButton("Credit card", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                for (Product item : mProductList) {
+                                    total += item.getPrice();
+                                    Intent intent = new Intent(ListActivity.this, SettingsActivity.class);
+                                    startActivity(intent);
+                                }
+                                String totall = total + "";
+                                Toast.makeText(ListActivity.this, "Mai mult cod", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        build2.setNegativeButton("Generate QR code", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                for (Product item : mProductList) {
+                                    total += item.getPrice();
+                                }
+                                String totall = total + "";
+                                Intent intent = new Intent(ListActivity.this, QRActivity.class);
+                                intent.putExtra("key", totall);
+                                startActivity(intent);
+
+                            }
+                        });
+                        build2.show();
+                    }
+                });
+                    builder.show();
             }
         });
 
     }
 
 }
+

@@ -40,29 +40,43 @@ public class QRActivity extends AppCompatActivity {
 
         iv = (ImageView) findViewById(R.id.iv);
         //etqr = (EditText) findViewById(R.id.etqr);
-        btn = (Button) findViewById(R.id.btn);
+        //btn = (Button) findViewById(R.id.btn);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //if(etqr.getText().toString().trim().length() == 0){
+        //    Toast.makeText(QRActivity.this, "Text", Toast.LENGTH_SHORT).show();
+        //}else {
+        try {
+            Bundle extras = getIntent().getExtras();
+            String total = extras.getString("key");
+            bitmap = TextToImageEncode(total);
+            iv.setImageBitmap(bitmap);
+            String path = saveImage(bitmap);  //give read write permission
+            Toast.makeText(QRActivity.this, "QRCode saved -> "+path, Toast.LENGTH_SHORT).show();
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
 
-                //if(etqr.getText().toString().trim().length() == 0){
-                //    Toast.makeText(QRActivity.this, "Text", Toast.LENGTH_SHORT).show();
-                //}else {
-                    try {
-                        Bundle extras = getIntent().getExtras();
-                        String total = extras.getString("key");
-                        bitmap = TextToImageEncode(total);
-                        iv.setImageBitmap(bitmap);
-                        String path = saveImage(bitmap);  //give read write permission
-                        Toast.makeText(QRActivity.this, "QRCode saved -> "+path, Toast.LENGTH_SHORT).show();
-                    } catch (WriterException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            //}
-        });
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                //if(etqr.getText().toString().trim().length() == 0){
+//                //    Toast.makeText(QRActivity.this, "Text", Toast.LENGTH_SHORT).show();
+//                //}else {
+//                    try {
+//                        Bundle extras = getIntent().getExtras();
+//                        String total = extras.getString("key");
+//                        bitmap = TextToImageEncode(total);
+//                        iv.setImageBitmap(bitmap);
+//                        String path = saveImage(bitmap);  //give read write permission
+//                        Toast.makeText(QRActivity.this, "QRCode saved -> "+path, Toast.LENGTH_SHORT).show();
+//                    } catch (WriterException e) {
+//                        e.printStackTrace();
+//                    }
+//
+//                }
+//            //}
+//        });
     }
 
     public String saveImage(Bitmap myBitmap) {
