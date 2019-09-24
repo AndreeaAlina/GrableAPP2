@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
-    android:background="@drawable/loginsignupalabun">
+    android:background="@drawable/loginandsignupfinal">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -90,7 +90,7 @@
             android:background="@drawable/loginbutton"
             android:text="Signup"
             android:textAllCaps="false"
-            android:textColor="#B82CE9"
+            android:textColor="#9370DB"
             android:textSize="18dp" />
 
             <TextView

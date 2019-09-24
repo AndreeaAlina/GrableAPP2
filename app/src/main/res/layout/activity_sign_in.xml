@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.grableapp.SignInActivity"
-    android:background="@drawable/loginsignupalabun"
     >
 
 
@@ -13,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/loginsignupalabun"
+            android:background="@drawable/loginandsignupfinal"
 
             >
 
@@ -74,7 +73,7 @@
                     android:background="@drawable/loginbutton"
                     android:text="Login"
                     android:textAllCaps="false"
-                    android:textColor="#B82CE9"
+                    android:textColor="#9370DB"
                     android:textSize="18dp" />
 
 
