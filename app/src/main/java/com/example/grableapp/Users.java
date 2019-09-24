@@ -1,6 +1,9 @@
 package com.example.grableapp;
 
+import android.widget.TextView;
+
 public class Users {
+    public static String name;
     private String email;
     private String password;
     private String Uid;
@@ -14,6 +17,8 @@ public class Users {
         this.password= password;
     }
 
+    public String getName(){ return name; }
+
     public String getEmail() {
         return email;
     }
@@ -21,6 +26,8 @@ public class Users {
     public String getPassword() { return password; }
 
     public String getUid() { return Uid; }
+
+    public void setName(String name) { this.name = name; }
 
     public void setEmail(String email) {
         this.email = email;

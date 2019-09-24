@@ -26,6 +26,8 @@ public class AddCardActivity extends AppCompatActivity {
         cardForm.setPayBtnClickListner(new OnPayBtnClickListner() {
             @Override
             public void onClick(Card card) {
+                Users.name = card.getName();
+                SettingsActivity.name.setText("Hello " + Users.name + "!");
                 Toast.makeText(AddCardActivity.this, "Name:" + card.getName() +
                         "Last 4 digits" + card.getLast4(), Toast.LENGTH_SHORT).show();
             }

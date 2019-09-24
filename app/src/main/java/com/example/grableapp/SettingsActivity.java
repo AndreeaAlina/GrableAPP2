@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -20,6 +21,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     Button logout_btn;
     Button add_card_btn;
+    static TextView name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         logout_btn = findViewById(R.id.logOutButton);
         add_card_btn = findViewById(R.id.addCardButton);
+        name = findViewById(R.id.textView4);
 
         logout_btn.setOnClickListener(new View.OnClickListener()
         {

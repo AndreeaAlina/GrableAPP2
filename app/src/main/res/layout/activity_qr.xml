@@ -18,12 +18,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:id="@+id/iv"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Scanati codul de mai sus la casa si platiti pentru a putea parasi magazinul!"
+        android:text="Scanati codul de mai sus la casa de marcat pentru a efectua plata."
         android:textSize="20dp"
         android:textAlignment="center"
         android:layout_marginTop="100dp"/>
