@@ -106,8 +106,8 @@ public class ListActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListActivity.this, ScannerActivity.class);
-                //startActivity(intent);
-                mProductList.add(new Product(1, "Kefir", 12, "Covalact, 20% grasime"));
+                startActivity(intent);
+                //mProductList.add(new Product(1, "Kefir", 12, "Covalact, 20% grasime"));
                 number_of_products++;
                 text_view.setAlpha(0f);
                 adapter.notifyDataSetChanged();

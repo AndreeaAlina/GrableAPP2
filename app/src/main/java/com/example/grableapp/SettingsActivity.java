@@ -53,6 +53,11 @@ public class SettingsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        if(Users.name != null) {
+            name.setText("Hello " + Users.name + "!");
+        } else {
+            name.setText("Hello User!");
+        }
 
     }
 }
