@@ -39,6 +39,12 @@ public class OffersActivity extends AppCompatActivity {
 
         addItemToList("Apa plata Dorna", 1.99, "Old price: 2.99 RON");
         addItemToList("Redbull", 3.99, "Old price 4.99 RON");
+        addItemToList("Capy Portocale", 4.59, "Old price: 5.59");
+        addItemToList("Lapte ZUZU", 2.35, "Old price: 3.99");
+        addItemToList("Paine Velpitar", 2.99, "Old price: 4.99");
+        addItemToList("Corn 7Days Ciocolata", 1.50, "Old price: 1.99");
+        addItemToList("Pasta de dinti Colgate", 6.99, "Old price: 10");
+        addItemToList("Caiet studentesc Matematica", 10.50, "Old price: 15");
 
         adapter = new ProductListAdapter(getApplicationContext(), mProductList);
         lvProduct.setAdapter(adapter);
