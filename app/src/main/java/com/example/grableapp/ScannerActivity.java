@@ -19,6 +19,8 @@ import android.widget.Toast;
 import static android.Manifest.permission.CAMERA;
 
 import com.firebase.client.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -157,6 +159,13 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         builder.setPositiveButton("Adauga in cos", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                scannerView.resumeCameraPreview(ScannerActivity.this);
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                String user = currentFirebaseUser.getUid();
+
+                String key = Ref.child("users").child(user).child("Cumparaturi").push().getKey();
+
+                Ref.child("users").child(user).child("Cumparaturi").child(key).setValue(myResult);
                 scannerView.resumeCameraPreview(ScannerActivity.this);
 
             }
