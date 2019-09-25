@@ -42,6 +42,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     DatabaseReference Ref;
     private int cart;
     private int newVal;
+    String res;
     private int oldVal;
     private int weight;
     private String myCart="";
@@ -268,7 +269,13 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                              public void onCancelled(DatabaseError databaseError) {}
                          });
                          if(psweight==weight)
-                        scannerView.resumeCameraPreview(ScannerActivity.this);
+                         { FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+                         String user = currentFirebaseUser.getUid();
+
+                         String key = Ref.child("users").child(user).child("Cumparaturi").push().getKey();
+
+                         Ref.child("users").child(user).child("Cumparaturi").child(key).setValue(myResult);
+                        scannerView.resumeCameraPreview(ScannerActivity.this);}
                          else Toast.makeText(getApplicationContext(), "greutatea produsului scanat nu corespunde cu greutatea adaugata in cos! ", Toast.LENGTH_LONG).show();
 
                     }

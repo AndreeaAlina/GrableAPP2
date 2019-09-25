@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private DatabaseReference _databaseRef1;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    Firebase myFirebase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
 
-        myFirebase= new Firebase("https://technovation-da41a.firebaseio.com/");
+
         _database1 = FirebaseDatabase.getInstance();
         _databaseRef1 = _database1.getReference().child("users");
 

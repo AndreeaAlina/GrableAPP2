@@ -30,7 +30,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     FirebaseAuth mAuth;
     EditText editTextEmail, editTextPassword;
 
-    Firebase myFirebase;
     private FirebaseDatabase _database1;
     private DatabaseReference _databaseRef1;
 
@@ -51,7 +50,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         _database1 = FirebaseDatabase.getInstance();
         _databaseRef1 = _database1.getReference().child("users");
-        myFirebase= new Firebase("https://technovation-da41a.firebaseio.com/");
+
 
     }
     private void userLogin() {

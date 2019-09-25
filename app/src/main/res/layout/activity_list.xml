@@ -1,48 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <ListView
-        android:id="@+id/listView"
-        android:layout_width="250dp"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="-2dp"
-        android:layout_marginLeft="-2dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginBottom="-2dp">
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:id="@+id/listview_produsct"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:dividerHeight="10dp"
+        android:divider="#d1d1d1">
 
     </ListView>
 
     <Button
         android:id="@+id/list_btn"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="293dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="280dp"
         android:layout_marginLeft="293dp"
         android:layout_marginTop="653dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/addbutton"
         android:onClick="addItems"
-        android:text="@string/add_item"
-        android:textColor="#FFFFFF" />
+        android:text="+"
+        android:textSize="30dp"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/finish_shopping"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="653dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/startshoppingbutton"
+        android:text="Finish shopping"
+        android:textAllCaps="false"
+        android:textColor="#FFF"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textviewlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Adaugati obiecte in lista pentru a le vizualiza"
+        android:textAlignment="center"
+        android:textSize="21dp"
+        android:layout_marginTop="60dp"/>
+
+    <ImageView
+        android:id="@+id/animationview"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="50dp"
+        android:src="@drawable/paymentview"
+        android:alpha="0"/>
+
+    <ImageView
+        android:id="@+id/loadinganimation"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="265dp"
+        android:src="@drawable/loadinganimation"
+        android:alpha="0"/>
+
+
+    <TextView
+        android:id="@+id/pleasewaitvew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "Please wait"
+        android:textSize="40dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="200dp"
+        android:textColor="#000"
+        android:alpha="0"/>
+
+    <TextView
+        android:id="@+id/proccesingview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Processing..."
+        android:textColor="#FFF"
+        android:textSize="30dp"
+        android:fontFamily="bold"
+        android:layout_marginTop="275dp"
+        android:layout_marginLeft="140dp"
+        android:alpha="0"/>
+
+    <ImageView
+        android:id="@+id/markfundal"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/markfundal"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="100dp"
+        android:alpha = "0" />
+
+
+    <ImageView
+        android:id="@+id/done"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="127dp"
+        android:layout_marginTop="233dp"
+        app:srcCompat= "@drawable/avd_done"/>
+
+    <TextView
+        android:id="@+id/thankyoutext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="450dp"
+        android:alpha="1"
+        android:text="Thank You!"
+        android:textColor="#9370db"
+        android:textSize="50dp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>
