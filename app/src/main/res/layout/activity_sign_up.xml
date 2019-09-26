@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="410dp"
             android:layout_marginLeft="60dp"
-            android:text="Accept termenii si conditiile Grabble"/>
+            android:text="I accept the terms and conditions of Grabble"/>
 
             <TextView
                 android:id="@+id/textViewLogin"
