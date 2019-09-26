@@ -43,7 +43,7 @@ public class ProductListAdapter extends BaseAdapter {
 
         tvName.setText(mProductList.get(i).getName());
         tvPrice.setText(mProductList.get(i).getPrice() + " RON");
-        tvDescription.setText(mProductList.get(i).getDescription());
+        tvDescription.setText(mProductList.get(i).getDescription()+"");
 
         v.setTag(mProductList.get(i).getId() );
 

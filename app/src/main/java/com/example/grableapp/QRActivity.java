@@ -36,9 +36,7 @@ public class QRActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qr);
 
-        iv = (ImageView) findViewById(R.id.iv);
         //etqr = (EditText) findViewById(R.id.etqr);
         //btn = (Button) findViewById(R.id.btn);
 
@@ -48,6 +46,17 @@ public class QRActivity extends AppCompatActivity {
         try {
             Bundle extras = getIntent().getExtras();
             String total = extras.getString("key");
+            Integer caz = extras.getInt("case");
+            if(caz == 1) {
+                setContentView(R.layout.activity_done);
+            }
+            else
+            {
+                setContentView(R.layout.activity_qr);
+            }
+
+
+            iv = (ImageView) findViewById(R.id.iv);
             bitmap = TextToImageEncode(total);
             iv.setImageBitmap(bitmap);
             String path = saveImage(bitmap);  //give read write permission

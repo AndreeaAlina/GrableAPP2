@@ -126,5 +126,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
     }
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
 
+    }
 }

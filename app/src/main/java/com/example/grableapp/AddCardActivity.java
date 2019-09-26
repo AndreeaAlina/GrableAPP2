@@ -21,8 +21,8 @@ public class AddCardActivity extends AppCompatActivity {
         cardForm = (CardForm)findViewById(R.id.credit_card);
         TextView textDes = (TextView)findViewById(R.id.payment_amount);
         Button btnpay = (Button)findViewById(R.id.btn_pay);
-        textDes.setText("$7541");
-        btnpay.setText(String.format("Payer name is:", textDes.getText()));
+        textDes.setText("");
+        btnpay.setText(String.format("ADD CARD", textDes.getText()));
         cardForm.setPayBtnClickListner(new OnPayBtnClickListner() {
             @Override
             public void onClick(Card card) {

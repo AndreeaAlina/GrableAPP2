@@ -1,19 +1,23 @@
 package com.example.grableapp;
 
 public class Product {
-    private int id;
+
     private String name;
     private double price;
     private String description;
+    private double weight;
+    private String id;
 
-    public Product(int id, String name, double price, String description) {
+    public Product(String id, String name, double price,double weight,String description) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.description = description;
+        this.weight = weight;
+        this.description=description;
+
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -25,11 +29,12 @@ public class Product {
         this.price = price;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
+    public void setDescription(String description){ this.description=description;}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -44,4 +49,5 @@ public class Product {
     public String getDescription() {
         return description;
     }
+    public double getWeight(){return  weight;}
 }
