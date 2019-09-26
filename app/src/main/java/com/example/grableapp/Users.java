@@ -7,6 +7,7 @@ public class Users {
     private String email;
     private String password;
     private String Uid;
+    public static  String username;
 
     public Users() {
     }
@@ -18,6 +19,10 @@ public class Users {
     }
 
     public String getName(){ return name; }
+
+    private void setUsername(String username) {this.username = username;}
+
+    private String getUsername() {return this.username;}
 
     public String getEmail() {
         return email;

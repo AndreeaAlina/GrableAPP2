@@ -565,7 +565,7 @@ public class ListActivity extends AppCompatActivity  {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        thank_you_text.animate().translationYBy(-1000).setDuration(300);
+                                        thank_you_text.animate().translationYBy(-1075).setDuration(300);
                                     }
                                 }, 8000);
 //                                handler4.postDelayed(new Runnable() {

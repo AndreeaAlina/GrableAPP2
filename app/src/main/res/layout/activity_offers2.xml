@@ -62,16 +62,13 @@
 
         <ListView
             android:id="@+id/offersList"
-            android:layout_width="422dp"
-            android:layout_height="353dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="-2dp"
+            android:layout_width="match_parent"
+            android:layout_height="510dp"
+            android:layout_marginStart="0dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="221dp"
-            android:layout_marginEnd="-9dp"
+            android:layout_marginEnd="0dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="-52dp"
             android:divider="#d1d1d1"
             android:dividerHeight="10dp" />
     </RelativeLayout>

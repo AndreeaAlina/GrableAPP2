@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private DatabaseReference _databaseRef1;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-
+        checkBox = findViewById(R.id.checkbox);
 
 
         _database1 = FirebaseDatabase.getInstance();
@@ -81,6 +83,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             editTextPassword.requestFocus();
             return;
         }
+        if (!checkBox.isChecked())
+        {
+            Toast.makeText(SignUpActivity.this, "Acceptati termenii si conditiile", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
 
 
 

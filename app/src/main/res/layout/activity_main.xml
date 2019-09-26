@@ -26,7 +26,8 @@
         android:text="Start Shopping!"
         android:textAllCaps="false"
         android:textColor="#FFF"
-        android:textSize="17dp" />
+        android:textSize="17dp"
+        android:layout_centerHorizontal="true"/>
 
 
 
@@ -51,6 +52,7 @@
         android:background="@drawable/offers_button"
         android:text="Offers"
         android:textColor="#9370DB"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>
