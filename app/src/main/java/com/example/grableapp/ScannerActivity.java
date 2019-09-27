@@ -180,10 +180,16 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                 Ref.child("users").child(user).child("Cumparaturi").child(key).setValue(myResult);
 
 
-                Intent myIntent = new Intent(ScannerActivity.this, ListActivity.class);
-                myIntent.putExtra("cos", cart);
-                myIntent.putExtra("hascart", hascart);
-                startActivity(myIntent);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent myIntent = new Intent(ScannerActivity.this, ListActivity.class);
+                        myIntent.putExtra("cos", cart);
+                        myIntent.putExtra("hascart", hascart);
+                        startActivity(myIntent);
+                    }
+                }, 500);
 
 
             }
@@ -304,10 +310,17 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                                     String key = Ref.child("users").child(user).child("Cumparaturi").child("cu cos").push().getKey();
 
                                     Ref.child("users").child(user).child("Cumparaturi").child(key).setValue(myResult);
-                                    Intent myIntent = new Intent(ScannerActivity.this, ListActivity.class);
-                                    myIntent.putExtra("cos", cart);
-                                    myIntent.putExtra("hascart", hascart);
-                                    startActivity(myIntent);
+                                    final Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent myIntent = new Intent(ScannerActivity.this, ListActivity.class);
+                                            myIntent.putExtra("cos", cart);
+                                            myIntent.putExtra("hascart", hascart);
+                                            startActivity(myIntent);
+                                        }
+                                    }, 400);
+
                                 }
                                 else {
                                     Toast.makeText(getApplicationContext(), "The weight of the scanned product does not equal the weight added to your cart!", Toast.LENGTH_LONG).show();

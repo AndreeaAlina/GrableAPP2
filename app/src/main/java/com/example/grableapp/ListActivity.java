@@ -51,6 +51,7 @@ public class ListActivity extends AppCompatActivity  {
     Map<String, String> shoppingList = new HashMap<String, String>();
 
     Button add_btn;
+    Button update_btn;
     Button finish_btn;
 
     ImageView done;
@@ -114,8 +115,10 @@ public class ListActivity extends AppCompatActivity  {
         Firebase.setAndroidContext(this);
 
         Intent intent2= getIntent();
+
         cart = intent2.getIntExtra("cos", 0 );
         hascart = intent2.getIntExtra("hascart",0);
+
 
         add_btn = findViewById(R.id.list_btn);
         finish_btn = findViewById(R.id.finish_shopping);
@@ -149,10 +152,23 @@ public class ListActivity extends AppCompatActivity  {
         lvProduct = (ListView)findViewById(R.id.listview_produsct);
         mProductList = new ArrayList<>();
         adapter = new ProductListAdapter(getApplicationContext(), mProductList);
-        lvProduct.setAdapter(adapter);
+
         //Add items to list
         mProductList.clear();
+
         number_of_products=0;
+        adapter.notifyDataSetChanged();
+        lvProduct.setAdapter(adapter);
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+
+            }
+        }, 500);
+
 
         Ref.child("users").child(user).child("Cumparaturi").addValueEventListener(new ValueEventListener() {
             @Override
@@ -160,7 +176,7 @@ public class ListActivity extends AppCompatActivity  {
 
                 for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
                     myChildValues = (String) item_snapshot.getValue(String.class);
-
+                   // Toast.makeText(getApplicationContext(), myChildValues, Toast.LENGTH_LONG).show();
                     Ref.child("PRODUSE").child(myChildValues).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -184,41 +200,14 @@ public class ListActivity extends AppCompatActivity  {
                             String Value=item_snapshot2.getValue(String.class);
                             name=Value;
                         }
-
                             }
 
-                            final Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Product product = new Product(ID, name, price, weight, description);
-                                    mProductList.add(product);
-                                    Toast.makeText(ListActivity.this,product.getName() , Toast.LENGTH_SHORT).show();
-                                    number_of_products+=1;
-                                    adapter.notifyDataSetChanged();
-                                    if(number_of_products>=5)
-                                    { AlertDialog.Builder builder3 = new AlertDialog.Builder(ListActivity.this);
-                                        builder3.setTitle("You need to choose a shopping cart!");
 
-                                        builder3.setPositiveButton("Add Cart", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
+                            Product product = new Product(ID, name, price, weight, description);
+                            mProductList.add(product);
+                            number_of_products+=1;
+                            adapter.notifyDataSetChanged();
 
-                                            }
-                                        });
-                                        builder3.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                            }
-                                        });
-
-                                        AlertDialog alert3 = builder3.create();
-                                        alert3.show();
-                                    }
-
-                                }
-                            }, 400);
 
 
 
@@ -229,15 +218,38 @@ public class ListActivity extends AppCompatActivity  {
 
                         }
                     });
-                    final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+
+
+                                           // Product product = new Product(ID, name, price, weight, description);
+//                            mProductList.add(product);
+                            //Toast.makeText(ListActivity.this,product.getName() , Toast.LENGTH_SHORT).show();
+//                            number_of_products+=1;
+//                            adapter.notifyDataSetChanged();
+
+//                                    if(number_of_products>=5)
+//                                    { AlertDialog.Builder builder3 = new AlertDialog.Builder(ListActivity.this);
+//                                        builder3.setTitle("You need to choose a shopping cart!");
+//
+//                                        builder3.setPositiveButton("Add Cart", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                            }
+//                                        });
+//                                        builder3.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialog, int which) {
+//
+//                                            }
+//                                        });
+//
+//                                        AlertDialog alert3 = builder3.create();
+//                                        alert3.show();
+//                                    }
 
 
 
-                    }
-                }, 400);
+
 
             }}
 
@@ -247,6 +259,9 @@ public class ListActivity extends AppCompatActivity  {
             }
         });
 
+
+//        finish();
+//        startActivity(getIntent());
 
 
 //        Ref.child("users").child(user).child("Cumparaturi").addChildEventListener(new ChildEventListener() {
