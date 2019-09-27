@@ -30,6 +30,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -79,7 +80,8 @@ public class ListActivity extends AppCompatActivity  {
     private String ID;
     private String name;
     private String description;
-
+    private String myChildValues;
+    private int k;
 
     private DatabaseReference _databaseRef1;
     private DatabaseReference _databaseRef2;
@@ -149,95 +151,206 @@ public class ListActivity extends AppCompatActivity  {
         adapter = new ProductListAdapter(getApplicationContext(), mProductList);
         lvProduct.setAdapter(adapter);
         //Add items to list
-        Ref.child("users").child(user).child("Cumparaturi").addChildEventListener(new ChildEventListener() {
+        mProductList.clear();
+        number_of_products=0;
+
+        Ref.child("users").child(user).child("Cumparaturi").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                final String myChildValues = (String) dataSnapshot.getValue();
-                //Toast.makeText(getApplicationContext(), myChildValues, Toast.LENGTH_LONG).show();
-                Ref.child("PRODUSE").child(myChildValues).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
-                        String myChildValues2 = (String) dataSnapshot.getKey();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot item_snapshot:dataSnapshot.getChildren()) {
+                    myChildValues = (String) item_snapshot.getValue(String.class);
+
+                    Ref.child("PRODUSE").child(myChildValues).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot item_snapshot2:dataSnapshot.getChildren()){
+                                String myChildValues2 = (String) item_snapshot2.getKey();
                             ID= String.valueOf(myChildValues);
 
                         if(myChildValues2.equals("pret")) {
-                            float Value = dataSnapshot.getValue(Float.class);
+                            float Value = item_snapshot2.getValue(Float.class);
                             price = Value;
                         }
                         if(myChildValues2.equals("greutate")){
-                            float Value=dataSnapshot.getValue(Float.class);
+                            float Value=item_snapshot2.getValue(Float.class);
                             weight= Value;
                         }
                         if(myChildValues2.equals("descriere")){
-                            String Value=dataSnapshot.getValue(String.class);
+                            String Value=item_snapshot2.getValue(String.class);
                             description=Value;
                         }
                         if(myChildValues2.equals("denumire")){
-                            String Value=dataSnapshot.getValue(String.class);
+                            String Value=item_snapshot2.getValue(String.class);
                             name=Value;
                         }
 
-                    }
+                            }
+
+                            final Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Product product = new Product(ID, name, price, weight, description);
+                                    mProductList.add(product);
+                                    Toast.makeText(ListActivity.this,product.getName() , Toast.LENGTH_SHORT).show();
+                                    number_of_products+=1;
+                                    adapter.notifyDataSetChanged();
+                                    if(number_of_products>=5)
+                                    { AlertDialog.Builder builder3 = new AlertDialog.Builder(ListActivity.this);
+                                        builder3.setTitle("You need to choose a shopping cart!");
+
+                                        builder3.setPositiveButton("Add Cart", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        });
+                                        builder3.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        });
+
+                                        AlertDialog alert3 = builder3.create();
+                                        alert3.show();
+                                    }
+
+                                }
+                            }, 400);
 
 
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
 
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+                        }
 
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {}
-                });
-                final Handler handler = new Handler();
+                        }
+                    });
+                    final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
 
-                        mProductList.add(new Product(ID, name, price, weight, description));
-                        number_of_products+=1;
-                        if(number_of_products>=5)
-                        { AlertDialog.Builder builder3 = new AlertDialog.Builder(ListActivity.this);
-                        builder3.setTitle("You need to choose a shopping cart!");
 
-                        builder3.setPositiveButton("Add Cart", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
 
-                            }
-                        });
-                        builder3.setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-
-                            AlertDialog alert3 = builder3.create();
-                            alert3.show();
-                        }
-                        adapter.notifyDataSetChanged();
                     }
-                }, 500);
+                }, 400);
+
+            }}
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {}
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {}
         });
+
+
+
+//        Ref.child("users").child(user).child("Cumparaturi").addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+//                 myChildValues = (String) dataSnapshot.getValue();
+//                  k=0;
+//                Toast.makeText(getApplicationContext(), myChildValues, Toast.LENGTH_LONG).show();
+//                Ref.child("PRODUSE").child(myChildValues).addChildEventListener(new ChildEventListener() {
+//                    @Override
+//
+//                    public void onChildAdded(DataSnapshot dataSnapshot, String prevChildKey) {
+//                        String myChildValues2 = (String) dataSnapshot.getKey();
+//                            ID= String.valueOf(myChildValues);
+//
+//                        if(myChildValues2.equals("pret")) {
+//                            float Value = dataSnapshot.getValue(Float.class);
+//                            price = Value;
+//                            k=k+1;
+//                        }
+//                        if(myChildValues2.equals("greutate")){
+//                            float Value=dataSnapshot.getValue(Float.class);
+//                            weight= Value;
+//                            k=k+1;
+//                        }
+//                        if(myChildValues2.equals("descriere")){
+//                            String Value=dataSnapshot.getValue(String.class);
+//                            description=Value;
+//                            k=k+1;
+//                        }
+//                        if(myChildValues2.equals("denumire")){
+//                            String Value=dataSnapshot.getValue(String.class);
+//                            name=Value;
+//                            k=k+1;
+//                        }
+//                       if(k==4) {
+//                           Toast.makeText(ListActivity.this, "" + name + weight + description + price, Toast.LENGTH_SHORT).show();
+//                           Product product= new Product(ID, name, price, weight, description);
+//                           mProductList.add(product);
+//                           //Toast.makeText(ListActivity.this,product.getName() , Toast.LENGTH_SHORT).show();
+//                           number_of_products+=1;
+//                           adapter.notifyDataSetChanged();
+//
+//                       }
+//
+//                    }
+//
+//                    @Override
+//                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//                    @Override
+//                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+//
+//                    @Override
+//                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {}
+//                });
+
+//                final Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Product product = new Product(ID, name, price, weight, description);
+//                        mProductList.add(product);
+//                        Toast.makeText(ListActivity.this,product.getName() , Toast.LENGTH_SHORT).show();
+//                        number_of_products+=1;
+//                        if(number_of_products==3)adapter.notifyDataSetChanged();
+//
+//                    }
+//                }, 400);
+
+
+
+
+
+
+//            }
+//
+//
+//
+//            @Override
+//            public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//            @Override
+//            public void onChildRemoved(DataSnapshot dataSnapshot) {}
+//
+//            @Override
+//            public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {}
+//        });
+
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                adapter.notifyDataSetChanged();
+//
+//
+//            }
+//        }, 500);
 
 
         lvProduct.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -249,7 +362,7 @@ public class ListActivity extends AppCompatActivity  {
 
                 psweight = Product.getWeight();
                 prodID=Product.getId();
-                Toast.makeText(getApplicationContext(), prodID+""+psweight, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), prodID+"  "+psweight, Toast.LENGTH_LONG).show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListActivity.this);
                 builder.setTitle("Do you want to delete the selected item?");
@@ -272,12 +385,12 @@ public class ListActivity extends AppCompatActivity  {
                                             Value2 = dataSnapshot.getValue(Float.class);
                                             if (myChildValues.equals("oldValue")) {
                                                 oldVal = Value2;
-                                                //Toast.makeText(getApplicationContext(), "old" + String.valueOf(oldVal), Toast.LENGTH_LONG).show();}
-                                            } else {
+                                                Toast.makeText(getApplicationContext(), "old" + String.valueOf(oldVal), Toast.LENGTH_LONG).show();}
+                                             else {
                                                 if (myChildValues.equals("newValue")) {
                                                     newVal = Value2;
-                                                    //Toast.makeText(getApplicationContext(), "new "+String.valueOf(newVal), Toast.LENGTH_LONG).show();}
-                                                }
+                                                    Toast.makeText(getApplicationContext(), "new "+String.valueOf(newVal), Toast.LENGTH_LONG).show();}
+
                                             }
                                         }
 
@@ -316,6 +429,7 @@ public class ListActivity extends AppCompatActivity  {
                                                         String prod = (String) dataSnapshot.getValue(String.class);
                                                         if (prod.equals(prodID)) {
                                                             Ref.child("users").child(user).child("Cumparaturi").child(dataSnapshot.getKey()).removeValue();
+                                                            number_of_products-=1;
 
                                                         }
                                                     }
@@ -378,6 +492,7 @@ public class ListActivity extends AppCompatActivity  {
                                     String prod = (String) dataSnapshot.getValue(String.class);
                                     if (prod.equals(prodID)) {
                                         Ref.child("users").child(user).child("Cumparaturi").child(dataSnapshot.getKey()).removeValue();
+
 
                                     }
                                 }

@@ -331,4 +331,5 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         AlertDialog alert1 = builder.create();
         alert1.show();
     }
+
 }
